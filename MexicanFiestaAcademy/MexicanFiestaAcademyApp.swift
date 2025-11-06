@@ -37,8 +37,7 @@ struct MexicanFiestaAcademyApp: App {
                             .ignoresSafeArea()
 
                         }
-                        OnGameView(isOnboardingCompleted: $isOnboardingCompleted,
-                                       )
+                        OnGameView(isOnboardingCompleted: $isOnboardingCompleted)
                         .environmentObject(appState)
                             
                     }

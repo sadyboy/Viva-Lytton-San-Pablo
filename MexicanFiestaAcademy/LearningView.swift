@@ -41,9 +41,7 @@ struct LearningView: View {
                         HStack(spacing: 12) {
                             ForEach(0..<categories.count, id: \.self) { index in
                                 Button {
-                                    withAnimation(.spring(response: 0.3)) {
                                         selectedCategory = index
-                                    }
                                 } label: {
                                     Text(categories[index])
                                         .font(.custom("Mexicana", size: 16))

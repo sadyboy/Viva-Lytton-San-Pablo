@@ -484,9 +484,7 @@ struct MemoryMatchGameView: View {
               !flippedIndices.contains(index),
               flippedIndices.count < 2 else { return }
         
-        withAnimation(.spring(response: 0.3)) {
             flippedIndices.insert(index)
-        }
         
         if flippedIndices.count == 2 {
             moves += 1
@@ -1017,9 +1015,7 @@ struct TacoTriviaGameView: View {
             score += 100
         }
         
-        withAnimation(.spring(response: 0.3)) {
             showResult = true
-        }
     }
     
     private func nextQuestion() {
