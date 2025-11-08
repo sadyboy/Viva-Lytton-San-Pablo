@@ -386,17 +386,3 @@ struct ExamIntroView: View {
     }
 }
 
-
-// MARK: - Exam Question View
-
-
-
-// MARK: - Exam Completion View
-
-// MARK: - Certificate View
-
-
-#Preview {
-    ExamModeView()
-        .environmentObject(AppState())
-}

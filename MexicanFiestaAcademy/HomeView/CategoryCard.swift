@@ -6,7 +6,7 @@ struct CategoryCard: View {
     let title: String
     let color: Color
     let progress: Double
-    
+    @EnvironmentObject var appState: AppState
     var body: some View {
         NavigationLink(destination: LearningView()) {
             VStack(alignment: .leading, spacing: 12) {

@@ -23,7 +23,7 @@ struct MainTabView: View {
                 ProfileView()
                     .tag(3)
             }
-            
+            .environmentObject(appState)
             // Custom Tab Bar
             CustomTabBar(selectedTab: $selectedTab)
                 .padding(.bottom, 10)

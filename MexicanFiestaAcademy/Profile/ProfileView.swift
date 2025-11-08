@@ -617,8 +617,3 @@ struct CategoryProgressBar: View {
         )
     }
 }
-
-#Preview {
-    ProfileView()
-        .environmentObject(AppState())
-}

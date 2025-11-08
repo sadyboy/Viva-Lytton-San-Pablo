@@ -162,9 +162,9 @@ struct AnswerButton: View {
 struct CompletionView: View {
     let score: Int
     let maxScore: Int
-    let lessonTitle: String
+    let lessonTitle: String?
     let onDismiss: () -> Void
-    
+    @EnvironmentObject var appState: AppState
     @State private var animateElements = false
     
     var percentage: Int {
@@ -187,10 +187,12 @@ struct CompletionView: View {
                         .foregroundColor(.white)
                         .shadow(color: .black.opacity(0.4), radius: 3, x: 0, y: 2)
                     
-                    Text(lessonTitle)
-                        .font(.custom("Mexicana", size: 20))
-                        .foregroundColor(Color(red: 0.95, green: 0.8, blue: 0.1))
-                        .shadow(color: .black.opacity(0.3), radius: 2, x: 0, y: 1)
+                    if let lessonTitle = lessonTitle {
+                        Text(lessonTitle)
+                            .font(.custom("Mexicana", size: 20))
+                            .foregroundColor(Color(red: 0.95, green: 0.8, blue: 0.1))
+                            .shadow(color: .black.opacity(0.3), radius: 2, x: 0, y: 1)
+                    }
                 }
                 
                 VStack(spacing: 20) {

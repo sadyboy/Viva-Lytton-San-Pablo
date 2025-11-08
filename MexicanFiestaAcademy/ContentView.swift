@@ -13,6 +13,7 @@ struct ContentView: View {
                 OnboardingView()
             } else {
                 MainTabView()
+                    .environmentObject(appState)
             }
         }
         .onAppear {
@@ -73,8 +74,3 @@ struct SplashView: View {
 }
 
 
-
-#Preview {
-    ContentView()
-        .environmentObject(AppState())
-}

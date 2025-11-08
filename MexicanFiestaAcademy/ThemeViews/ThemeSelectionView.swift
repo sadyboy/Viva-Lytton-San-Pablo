@@ -291,8 +291,3 @@ let festivalTheme = Theme(
     unlockCoins: 500,
     unlockRequirement: "Necesitas nivel 25 y 500 monedas para desbloquear este tema"
 )
-
-#Preview {
-    ThemeSelectionView()
-        .environmentObject(AppState())
-}

@@ -6,7 +6,7 @@ struct CompletionViews: View {
     let maxScore: Int
 //    let lessonTitle: String
     let onDismiss: () -> Void
-    
+    @EnvironmentObject var appState: AppState
     @State private var animateElements = false
     
     var percentage: Int {

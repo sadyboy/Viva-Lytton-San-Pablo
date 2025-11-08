@@ -7,7 +7,7 @@ struct ExamCompletionView: View {
     let percentage: Int
     let timeUsed: TimeInterval
     let onDismiss: () -> Void
-    
+    @EnvironmentObject var appState: AppState
     @State private var showCertificate = false
     @State private var animateScore = false
     

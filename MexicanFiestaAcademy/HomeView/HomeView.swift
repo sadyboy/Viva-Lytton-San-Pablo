@@ -116,23 +116,26 @@ struct LessonCard: View {
     let completed: Bool
     let category: String = "General"
     let color: Color
+    @EnvironmentObject var appState: AppState
+    
+    private var lesson: LessonNode {
+        LessonNode(
+            id: 1,
+            category: category,
+            emoji: emoji,
+            title: title,
+            description: subtitle,
+            difficulty: .easy,
+            isCompleted: completed,
+            isLocked: false
+        )
+    }
     
     var body: some View {
-        NavigationLink(destination: LessonDetailView(
-            lesson: LessonNode(
-                id: 1, category: category,
-                emoji: emoji,
-                title: title,
-                description: subtitle,
-                difficulty: .easy,
-                isCompleted: completed,
-                isLocked: false
-            )
-        )) {
+        NavigationLink(value: lesson) {
             HStack(spacing: 16) {
                 Image(emoji)
                     .resizable()
-//                    .font(.system(size: 40))
                     .frame(width: 60, height: 60)
                     .background(
                         RoundedRectangle(cornerRadius: 12)
@@ -143,7 +146,6 @@ struct LessonCard: View {
                                     endPoint: .bottomTrailing
                                 )
                             )
-                            .shadow(color: color.opacity(0.4), radius: 3, x: 0, y: 2)
                     )
                     .overlay(
                         RoundedRectangle(cornerRadius: 12)
@@ -154,75 +156,44 @@ struct LessonCard: View {
                     Text(title)
                         .font(.custom("Mexicana", size: 18))
                         .foregroundColor(.white)
-                        .shadow(color: .black.opacity(0.4), radius: 2, x: 0, y: 1)
-                    
                     Text(subtitle)
                         .font(.custom("Mexicana", size: 14))
                         .foregroundColor(.white.opacity(0.9))
-                        .shadow(color: .black.opacity(0.3), radius: 1, x: 0, y: 1)
-                    
                     HStack(spacing: 8) {
                         Label(difficulty, systemImage: "chart.bar.fill")
                             .font(.custom("Mexicana", size: 11))
                             .foregroundColor(.white)
-                            .padding(.horizontal, 8)
-                            .padding(.vertical, 4)
-                            .background(
-                                Capsule()
-                                    .fill(Color(red: 1.0, green: 0.8, blue: 0.0).opacity(0.4))
-                            )
-                        
+                            .padding(6)
+                            .background(Capsule().fill(Color.yellow.opacity(0.4)))
                         Label(duration, systemImage: "clock.fill")
                             .font(.custom("Mexicana", size: 11))
                             .foregroundColor(.white)
-                            .padding(.horizontal, 8)
-                            .padding(.vertical, 4)
-                            .background(
-                                Capsule()
-                                    .fill(Color(red: 0.9, green: 0.7, blue: 0.0).opacity(0.4))
-                            )
+                            .padding(6)
+                            .background(Capsule().fill(Color.orange.opacity(0.4)))
                     }
                 }
                 
                 Spacer()
                 
-                if completed {
-                    Image(systemName: "checkmark.circle.fill")
-                        .font(.system(size: 28))
-                        .foregroundColor(.white)
-                        .background(
-                            Circle()
-                                .fill(Color(red: 0.2, green: 0.6, blue: 0.3))
-                                .frame(width: 32, height: 32)
-                        )
-                        .shadow(color: .black.opacity(0.4), radius: 2, x: 0, y: 2)
-                } else {
-                    Image(systemName: "arrow.right.circle.fill")
-                        .font(.system(size: 28))
-                        .foregroundColor(.white)
-                        .shadow(color: .black.opacity(0.4), radius: 2, x: 0, y: 2)
-                }
+                Image(systemName: completed ? "checkmark.circle.fill" : "arrow.right.circle.fill")
+                    .font(.system(size: 28))
+                    .foregroundColor(.white)
             }
             .padding()
             .background(
                 RoundedRectangle(cornerRadius: 16)
-                    .fill(
-                        LinearGradient(
-                            colors: [
-                                color.opacity(0.7),
-                                color.opacity(0.4)
-                            ],
-                            startPoint: .topLeading,
-                            endPoint: .bottomTrailing
-                        )
-                    )
-                    .shadow(color: color.opacity(0.5), radius: 10, x: 0, y: 5)
+                    .fill(LinearGradient(
+                        colors: [color.opacity(0.7), color.opacity(0.4)],
+                        startPoint: .topLeading,
+                        endPoint: .bottomTrailing
+                    ))
             )
             .overlay(
                 RoundedRectangle(cornerRadius: 16)
                     .stroke(Color.white.opacity(0.2), lineWidth: 1)
             )
         }
+        .buttonStyle(PlainButtonStyle()) 
     }
 }
 
@@ -327,9 +298,4 @@ struct AchievementBadge: View {
             )
         }
     }
-}
-
-#Preview {
-    HomeView()
-        .environmentObject(AppState())
 }

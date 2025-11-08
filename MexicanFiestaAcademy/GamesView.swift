@@ -355,6 +355,7 @@ struct GameCard: View {
 }
 
 // MARK: - Memory Match Game View
+// MARK: - Memory Match Game View
 struct MemoryMatchGameView: View {
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var appState: AppState
@@ -403,7 +404,7 @@ struct MemoryMatchGameView: View {
                     Spacer()
                     
                     VStack(spacing: 4) {
-                        Text("Movements")
+                        Text("Moves")
                             .font(.custom("Mexicana", size: 12))
                             .foregroundColor(.white.opacity(0.9))
                             .shadow(color: .black.opacity(0.3), radius: 1, x: 0, y: 1)
@@ -434,7 +435,7 @@ struct MemoryMatchGameView: View {
                     .shadow(color: .black.opacity(0.5), radius: 3, x: 0, y: 2)
                     .padding(.bottom, 10)
                 
-                Text("Find the pairs")
+                Text("Find the matching pairs")
                     .font(.custom("Mexicana", size: 16))
                     .foregroundColor(.white.opacity(0.9))
                     .shadow(color: .black.opacity(0.3), radius: 1, x: 0, y: 1)
@@ -442,9 +443,9 @@ struct MemoryMatchGameView: View {
                 
                 // Game grid
                 LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 12), count: 3), spacing: 12) {
-                    ForEach(0..<cards.count, id: \.self) { index in
+                    ForEach(Array(cards.enumerated()), id: \.offset) { index, card in
                         MemoryCardView(
-                            card: cards[index],
+                            card: card,
                             isFlipped: flippedIndices.contains(index) || matchedIndices.contains(index),
                             isMatched: matchedIndices.contains(index)
                         )
@@ -459,7 +460,7 @@ struct MemoryMatchGameView: View {
             }
             
             if showCompletion {
-                CompletionViews(score: score, maxScore: 600) {
+                CompletionView(score: score, maxScore: cardPairs.count * 100, lessonTitle: nil) {
                     dismiss()
                 }
             }
@@ -471,10 +472,12 @@ struct MemoryMatchGameView: View {
     
     private func setupGame() {
         var newCards: [MemoryCard] = []
+        
         for pair in cardPairs {
-            newCards.append(MemoryCard(emoji: pair.0, text: pair.0))
-            newCards.append(MemoryCard(emoji: pair.1, text: pair.1))
+            newCards.append(MemoryCard(id: UUID(), type: .emoji, content: pair.0, pairId: pair.0 + pair.1))
+            newCards.append(MemoryCard(id: UUID(), type: .text, content: pair.1, pairId: pair.0 + pair.1))
         }
+        
         cards = newCards.shuffled()
     }
     
@@ -484,7 +487,9 @@ struct MemoryMatchGameView: View {
               !flippedIndices.contains(index),
               flippedIndices.count < 2 else { return }
         
+        withAnimation {
             flippedIndices.insert(index)
+        }
         
         if flippedIndices.count == 2 {
             moves += 1
@@ -494,36 +499,46 @@ struct MemoryMatchGameView: View {
     
     private func checkForMatch() {
         canFlip = false
+        
         let indices = Array(flippedIndices)
         let firstCard = cards[indices[0]]
         let secondCard = cards[indices[1]]
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            if firstCard.emoji == secondCard.text || firstCard.text == secondCard.emoji {
-                withAnimation {
-                    matchedIndices.insert(indices[0])
-                    matchedIndices.insert(indices[1])
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            if firstCard.pairId == secondCard.pairId {
+                withAnimation(.spring()) {
+                    matchedIndices.formUnion(indices)
                     score += 100
                 }
                 
                 if matchedIndices.count == cards.count {
                     appState.userProgress.addScore(score)
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                        showCompletion = true
+                        withAnimation {
+                            showCompletion = true
+                        }
                     }
                 }
             }
             
-            flippedIndices.removeAll()
+            withAnimation {
+                flippedIndices.removeAll()
+            }
             canFlip = true
         }
     }
 }
 
 struct MemoryCard: Identifiable {
-    let id = UUID()
-    let emoji: String
-    let text: String
+    let id: UUID
+    let type: CardType
+    let content: String
+    let pairId: String
+}
+
+enum CardType {
+    case emoji
+    case text
 }
 
 struct MemoryCardView: View {
@@ -542,45 +557,51 @@ struct MemoryCardView: View {
                         endPoint: .bottomTrailing
                     ) :
                     LinearGradient(
-                        colors: [Color.white, Color(red: 0.98, green: 0.98, blue: 1.0)],
+                        colors: [Color.white, Color(red: 0.95, green: 0.95, blue: 1.0)],
                         startPoint: .topLeading,
                         endPoint: .bottomTrailing
                     )
                 )
-                .shadow(color: .black.opacity(0.4), radius: 4, x: 0, y: 2)
+                .shadow(color: .black.opacity(isMatched ? 0.6 : 0.4), radius: isMatched ? 8 : 4, x: 0, y: isMatched ? 4 : 2)
                 .overlay(
                     RoundedRectangle(cornerRadius: 12)
-                        .stroke(isMatched ? Color.white.opacity(0.3) : Color.gray.opacity(0.2), lineWidth: 1)
+                        .stroke(isMatched ? Color.white.opacity(0.5) : Color.gray.opacity(0.3), lineWidth: isMatched ? 3 : 1)
                 )
             
-            if isFlipped {
-                VStack(spacing: 4) {
-                    if card.emoji.count == 1 {
-                        Text(card.emoji)
-                            .font(.system(size: 40))
+            if isFlipped || isMatched {
+                VStack(spacing: 8) {
+                    if card.type == .emoji {
+                        Text(card.content)
+                            .font(.system(size: 35))
                             .shadow(color: .black.opacity(0.3), radius: 1, x: 0, y: 1)
                     } else {
-                        Text(card.text)
+                        Text(card.content)
                             .font(.custom("Mexicana", size: 14))
-                            .foregroundColor(.primary)
+                            .foregroundColor(.black)
                             .multilineTextAlignment(.center)
+                            .minimumScaleFactor(0.8)
                     }
                 }
+                .padding(8)
             } else {
                 Image(systemName: "questionmark")
-                    .font(.system(size: 30, weight: .bold))
+                    .font(.system(size: 28, weight: .bold))
                     .foregroundColor(Color(red: 1.0, green: 0.8, blue: 0.0))
                     .shadow(color: .black.opacity(0.3), radius: 1, x: 0, y: 1)
             }
         }
         .frame(height: 100)
         .rotation3DEffect(
-            .degrees(isFlipped ? 0 : 180),
+            .degrees(isFlipped || isMatched ? 0 : 180),
             axis: (x: 0, y: 1, z: 0)
         )
-        .animation(.spring(response: 0.4), value: isFlipped)
+        .animation(.spring(response: 0.6, dampingFraction: 0.8), value: isFlipped)
+        .scaleEffect(isMatched ? 1.05 : 1.0)
+        .animation(isMatched ? .spring(response: 0.3, dampingFraction: 0.6) : .default, value: isMatched)
     }
 }
+
+
 
 // MARK: - Quiz Game View
 struct QuizGameView: View {
@@ -1083,7 +1104,3 @@ struct TacoAnswerButton: View {
     }
 }
 
-#Preview {
-    GamesView()
-        .environmentObject(AppState())
-}

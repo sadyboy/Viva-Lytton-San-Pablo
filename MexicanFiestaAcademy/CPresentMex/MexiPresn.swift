@@ -41,6 +41,7 @@ struct OnGameView: View {
     var body: some View {
         if isOnboardingCompleted {
             ContentView()
+                .environmentObject(appState)
         } else {
             NavigationStack {
                 ZStack {

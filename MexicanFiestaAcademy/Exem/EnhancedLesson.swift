@@ -3,7 +3,7 @@ import SwiftUI
 struct LessonDetailView: View {
     let lesson: LessonNode
     @Environment(\.dismiss) var dismiss
-    @EnvironmentObject var appState: AppState
+    @StateObject var appState =  AppState()
     @State private var currentQuestion = 0
     @State private var selectedAnswer: Int? = nil
     @State private var showResult = false

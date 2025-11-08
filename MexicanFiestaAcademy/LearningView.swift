@@ -7,7 +7,8 @@ import SwiftUI
 
 struct LearningView: View {
     @State private var selectedCategory = 0
-    
+    @EnvironmentObject var appState: AppState
+
     private let categories = ["All", "Español", "Geografía", "Cultura", "Cocina"]
     
     private let casinoColors = [
@@ -73,6 +74,7 @@ struct LearningView: View {
                             .padding(.horizontal)
                         
                         LearningPathView(selectedCategory: categories[selectedCategory])
+                        
                     }
                     
                     Spacer(minLength: 100)
@@ -108,6 +110,7 @@ struct LearningView: View {
 // MARK: - Learning Path View
 struct LearningPathView: View {
     let selectedCategory: String
+   
 
     private let allLessons: [LessonNode] = [
         // Spanish
@@ -192,6 +195,7 @@ struct LearningPathView: View {
             VStack(spacing: 40) {
                 ForEach(Array(filteredLessons.enumerated()), id: \.element.id) { index, lesson in
                     LessonNodeCard(lesson: lesson, cardColor: cardColors[index % cardColors.count])
+                        
                         .offset(x: lesson.id % 2 == 0 ? -40 : 40)
                 }
             }
@@ -233,12 +237,21 @@ struct LessonNode: Identifiable {
         }
     }
 }
-
+extension LessonNode: Hashable {
+    static func == (lhs: LessonNode, rhs: LessonNode) -> Bool {
+        lhs.id == rhs.id
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+        hasher.combine(title)
+    }
+}
 // MARK: - Lesson Node Card
 struct LessonNodeCard: View {
     let lesson: LessonNode
     let cardColor: Color
-    
+    @EnvironmentObject var appState: AppState
     var body: some View {
         NavigationLink(destination: LessonDetailView(lesson: lesson)) {
             HStack(spacing: 16) {
