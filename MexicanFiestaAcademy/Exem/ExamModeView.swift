@@ -87,112 +87,95 @@ class ExamManager: ObservableObject {
                 text: "What is the national dish of Mexico?",
                 options: ["Tacos al pastor", "Mole poblano", "Chiles en nogada", "Pozole"],
                 correctAnswer: 2,
-                explanation: "Chiles en nogada are considered the national dish because of their patriotic colors (green, white, and red)"
-                
+                explanation: "Chiles en nogada are considered the national dish because of their patriotic colors."
             ),
             Question(
                 text: "In what year did the Mexican Revolution begin?",
                 options: ["1905", "1910", "1915", "1920"],
                 correctAnswer: 1,
-                explanation: "The Mexican Revolution began in 1910 against the government of Porfirio Díaz"
-                
-            ),
-            Question(
-                text: "What does 'fiesta' mean in Spanish?",
-                options: ["Food", "Party", "Dance", "Music"],
-                correctAnswer: 1,
-                explanation: "'Fiesta' means 'party' in English - a celebration or festive gathering"
-                
-            ),
-            Question(
-                
-                text: "What is the most characteristic musical instrument of Mexico?",
-                options: ["Guitar", "Marimba", "Maracas", "Mariachi"],
-                correctAnswer: 3,
-                explanation: "The mariachi is the most representative musical group of Mexico"
-            ),
-            Question(
-                text: "Which city is known as 'The City of Palaces'?",
-                options: ["Guadalajara", "Monterrey", "Mexico City", "Puebla"],
-                correctAnswer: 2,
-                explanation: "Mexico City is known as 'The City of Palaces' because of its architecture"),
-            Question(
-                text: "How do you say 'thank you' in Spanish?",
-                options: ["Please", "Thank you", "You're welcome", "Hello"],
-                correctAnswer: 1,
-                explanation: "'Thank you' is the way to say 'thank you' in Spanish"
-                
+                explanation: "It began in 1910 against the regime of Porfirio Díaz."
             ),
             Question(
                 text: "Which Mexican artist painted 'The Two Fridas'?",
-                options: ["Diego Rivera", "Frida Kahlo", "David Alfaro Siqueiros", "José Clemente Orozco"],
+                options: ["Diego Rivera", "Frida Kahlo", "David Siqueiros", "José Orozco"],
                 correctAnswer: 1,
-                explanation: "Frida Kahlo painted 'The Two Fridas' in 1939, one of her most famous works"
-                
+                explanation: "Frida Kahlo created it in 1939."
             ),
             Question(
-                text: "What is the traditional Mexican drink made from agave?",
-                options: ["Mezcal", "Pulque", "Tequila", "All of the above"],
-                correctAnswer: 3,
-                explanation: "All of these drinks are traditional Mexican drinks made from different types of agave"
-                
-            ),
-            Question(
-                text: "What does the Day of the Dead celebrate in Mexico?",
-                options: ["Independence", "The deceased", "The revolution", "Spring"],
+                text: "What does 'amigo' mean in English?",
+                options: ["Enemy", "Friend", "Family", "Neighbor"],
                 correctAnswer: 1,
-                explanation: "The Day of the Dead is a tradition to honor and remember deceased loved ones"
-                
+                explanation: "'Amigo' = friend."
             ),
             Question(
-                text: "How do you say 'beautiful' in Spanish?",
-                options: ["Bonito", "Hermoso", "Guapo", "Todos los antes"],
-                correctAnswer: 3,
-                explanation: "All of these words can mean 'beautiful' depending on the context"
-                
-            ),Question(
-                text: "How do you say 'beautiful' in Spanish?",
-                options: ["Bonito", "Hermoso", "Guapo", "Todos los antes"],
-                correctAnswer: 3,
-                explanation: "All of these words can mean 'beautiful' depending on the context"
-                
+                text: "What is the capital of Yucatán?",
+                options: ["Mérida", "Cancún", "Campeche", "Tulum"],
+                correctAnswer: 0,
+                explanation: "Mérida is the capital of Yucatán."
             ),
             Question(
-                text: "Which pre-Hispanic pyramid is near Mexico City?",
-                options: ["Chichen Itza", "Teotihuacan", "Palenque", "Monte Alban"],
+                text: "Which volcano is near Puebla?",
+                options: ["Popocatépetl", "Colima", "Paricutín", "Nevado de Toluca"],
+                correctAnswer: 0,
+                explanation: "Popocatépetl, also called 'El Popo'."
+            ),
+            Question(
+                text: "How do you say 'apple' in Spanish?",
+                options: ["Naranja", "Manzana", "Uva", "Pera"],
                 correctAnswer: 1,
-                explanation: "Teotihuacan, with the Pyramids of the Sun and the Moon, is 40 km from Mexico City"
-                
+                explanation: "‘Manzana’ means apple."
             ),
             Question(
-                text: "What is the traditional dance of Veracruz?",
-                options: ["Jarabe Tapatío", "Danza de los Viejitos", "Son Jarocho", "Flor de Piña"],
-                correctAnswer: 2,
-                explanation: "Son Jarocho is the traditional dance of the state of Veracruz"
-                
+                text: "What is Mexico’s largest desert?",
+                options: ["Chihuahuan Desert", "Sonoran Desert", "Atacama", "Baja Desert"],
+                correctAnswer: 0,
+                explanation: "The Chihuahuan Desert extends into the U.S. border."
             ),
             Question(
-                text: "What does 'mañana' mean in Spanish?",
-                options: ["Morning", "Tomorrow", "Afternoon", "Evening"],
+                text: "Who conquered the Aztec Empire?",
+                options: ["Francisco Pizarro", "Hernán Cortés", "Pedro de Alvarado", "Diego de Velázquez"],
                 correctAnswer: 1,
-                
-                explanation: "'Mañana' means 'tomorrow', while 'la mañana' means 'morning'"
-                
+                explanation: "Hernán Cortés led the conquest in 1519–1521."
             ),
             Question(
-                text: "Who was the last Aztec emperor?",
-                options: ["Moctezuma I", "Cuauhtémoc", "Moctezuma II", "Itzcóatl"],
+                text: "What is the currency of Mexico?",
+                options: ["Peso", "Dollar", "Real", "Bolivar"],
+                correctAnswer: 0,
+                explanation: "The Mexican Peso (MXN) is the official currency."
+            ),
+            Question(
+                text: "Which flower is a symbol of the Day of the Dead?",
+                options: ["Rose", "Cempasúchil", "Daisy", "Orchid"],
                 correctAnswer: 1,
-                explanation: "Cuauhtémoc was the last Mexica tlatoani, executed by the Spanish in 1525"
-                
+                explanation: "Cempasúchil, or marigold, symbolizes the sun and life."
             ),
             Question(
-                text: "Which Mexican state is famous for its silver production?",
-                options: ["Guanajuato", "Zacatecas", "Taxco", "All of the above"],
-                correctAnswer: 3,
-                explanation: "All of these states are famous for their silver production and craftsmanship")
+                text: "What’s the meaning of 'Hola'?",
+                options: ["Hi", "Goodbye", "Thanks", "Please"],
+                correctAnswer: 0,
+                explanation: "‘Hola’ = hello."
+            ),
+            Question(
+                text: "What is Mexico’s independence day?",
+                options: ["May 5", "Sept 16", "July 4", "Oct 12"],
+                correctAnswer: 1,
+                explanation: "September 16, not Cinco de Mayo!"
+            ),
+            Question(
+                text: "Which color is NOT on the Mexican flag?",
+                options: ["Red", "Blue", "White", "Green"],
+                correctAnswer: 1,
+                explanation: "The flag is green, white, and red."
+            ),
+            Question(
+                text: "Where is Chichen Itzá located?",
+                options: ["Yucatán", "Oaxaca", "Puebla", "Guerrero"],
+                correctAnswer: 0,
+                explanation: "Chichen Itzá is in Yucatán, one of the New 7 Wonders."
+            )
         ]
     }
+
     
     private func startTimer() {
         timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] _ in

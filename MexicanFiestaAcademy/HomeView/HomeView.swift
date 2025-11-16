@@ -14,7 +14,7 @@ struct HomeView: View {
     ]
 
     var body: some View {
-        NavigationView {
+        NavigationStack {
             ZStack {
                 LinearGradient(
                     colors: [
@@ -94,6 +94,9 @@ struct HomeView: View {
                             .padding(.bottom, 120)
                     }
                     .padding(.top)
+                }
+                .navigationDestination(for: LessonNode.self) { lesson in
+                    LessonDetailView(lesson: lesson)
                 }
             }
             .navigationBarHidden(true)
@@ -209,7 +212,7 @@ struct AchievementsPreview: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
             HStack {
-                Text("Logros recientes")
+                Text("Recent achievements")
                     .font(.custom("Mexicana", size: 28))
                     .foregroundColor(Color(red: 1.0, green: 0.8, blue: 0.0))
                     .shadow(color: .black.opacity(0.5), radius: 3, x: 0, y: 2)
@@ -219,16 +222,16 @@ struct AchievementsPreview: View {
                 Button {
                     // Action
                 } label: {
-                    Text("View all")
+                    Text("")
                         .font(.custom("Mexicana", size: 16))
                         .foregroundColor(.white)
                         .padding(.horizontal, 16)
                         .padding(.vertical, 8)
-                        .background(
-                            Capsule()
-                                .fill(Color(red: 1.0, green: 0.8, blue: 0.0).opacity(0.6)) 
-                                .shadow(color: .black.opacity(0.3), radius: 3, x: 0, y: 2)
-                        )
+//                        .background(
+//                            Capsule()
+//                                .fill(Color(red: 1.0, green: 0.8, blue: 0.0).opacity(0.6)) 
+//                                .shadow(color: .black.opacity(0.3), radius: 3, x: 0, y: 2)
+//                        )
                 }
             }
             

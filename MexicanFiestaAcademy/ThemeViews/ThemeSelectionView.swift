@@ -34,12 +34,12 @@ struct ThemeSelectionView: View {
                                 .font(.system(size: 80))
                                 .shadow(color: .black.opacity(0.3), radius: 2, x: 0, y: 2)
                             
-                            Text("Elige tu tema")
+                            Text("Choose your theme")
                                 .font(.custom("Mexicana", size: 32))
                                 .foregroundColor(.white)
                                 .shadow(color: .black.opacity(0.3), radius: 2, x: 0, y: 2)
                             
-                            Text("Personaliza la apariencia de tu app")
+                            Text("Customize the appearance of your app")
                                 .font(.custom("Mexicana", size: 18))
                                 .foregroundColor(.white.opacity(0.9))
                                 .multilineTextAlignment(.center)
@@ -71,7 +71,7 @@ struct ThemeSelectionView: View {
                         
                         // Info Section
                         VStack(spacing: 16) {
-                            Text("💡 Cómo desbloquear temas")
+                            Text("💡How to unlock themes")
                                 .font(.custom("Mexicana", size: 20))
                                 .foregroundColor(.white)
                                 .shadow(color: .black.opacity(0.3), radius: 1, x: 0, y: 1)
@@ -83,7 +83,7 @@ struct ThemeSelectionView: View {
                                         .foregroundColor(Color(red: 0.95, green: 0.8, blue: 0.1))
                                         .shadow(color: .black.opacity(0.3), radius: 1, x: 0, y: 1)
                                     
-                                    Text("Sube de nivel")
+                                    Text("Level up")
                                         .font(.custom("Mexicana", size: 12))
                                         .foregroundColor(.white)
                                         .shadow(color: .black.opacity(0.2), radius: 1, x: 0, y: 1)
@@ -95,7 +95,7 @@ struct ThemeSelectionView: View {
                                         .foregroundColor(Color(red: 0.85, green: 0.2, blue: 0.3))
                                         .shadow(color: .black.opacity(0.3), radius: 1, x: 0, y: 1)
                                     
-                                    Text("Completa logros")
+                                    Text("Complete achievements")
                                         .font(.custom("Mexicana", size: 12))
                                         .foregroundColor(.white)
                                         .shadow(color: .black.opacity(0.2), radius: 1, x: 0, y: 1)
@@ -107,7 +107,7 @@ struct ThemeSelectionView: View {
                                         .foregroundColor(Color(red: 0.2, green: 0.6, blue: 0.3))
                                         .shadow(color: .black.opacity(0.3), radius: 1, x: 0, y: 1)
                                     
-                                    Text("Juega más")
+                                    Text("Play more")
                                         .font(.custom("Mexicana", size: 12))
                                         .foregroundColor(.white)
                                         .shadow(color: .black.opacity(0.2), radius: 1, x: 0, y: 1)
@@ -127,7 +127,7 @@ struct ThemeSelectionView: View {
                     .padding(.vertical)
                 }
             }
-            .navigationTitle("Temas")
+            .navigationTitle("Topics")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
@@ -136,7 +136,7 @@ struct ThemeSelectionView: View {
                     } label: {
                         HStack {
                             Image(systemName: "chevron.left")
-                            Text("Atrás")
+                            Text("Back")
                         }
                         .font(.custom("Mexicana", size: 16))
                         .foregroundColor(.white)
@@ -154,7 +154,7 @@ struct ThemeSelectionView: View {
                     HStack {
                         Image(systemName: "star.fill")
                             .foregroundColor(Color(red: 0.95, green: 0.8, blue: 0.1))
-                        Text("Nivel \(appState.userProgress.level)")
+                        Text("Level \(appState.userProgress.level)")
                             .font(.custom("Mexicana", size: 14))
                             .foregroundColor(.white)
                     }
@@ -168,7 +168,7 @@ struct ThemeSelectionView: View {
                 }
             }
         }
-        .alert("Tema bloqueado", isPresented: $showUnlockAlert) {
+        .alert("Blocked topic", isPresented: $showUnlockAlert) {
             Button("OK", role: .cancel) { }
         } message: {
             if let theme = selectedTheme {

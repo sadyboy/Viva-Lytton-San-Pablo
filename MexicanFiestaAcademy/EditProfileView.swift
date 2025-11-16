@@ -24,6 +24,9 @@ struct EditProfileView: View {
                 
                 ScrollView {
                     VStack(spacing: 30) {
+                        Text("Edit profile")
+                            .foregroundColor(.white)
+                            .font(.custom("Mexicana", size: 32))
                         // Avatar selection
                         VStack(spacing: 16) {
                             Text("Elige tu avatar")
@@ -116,7 +119,7 @@ struct EditProfileView: View {
                         .padding(.vertical)
                         }
                         }
-                        .navigationTitle("Edit profile")
+//                        .navigationTitle("Edit profile")
                         .navigationBarTitleDisplayMode(.inline)
                         .toolbar {
                         ToolbarItem(placement: .navigationBarTrailing) {

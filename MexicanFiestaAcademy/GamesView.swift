@@ -137,9 +137,9 @@ struct GamesView: View {
             case .quiz:
                 QuizGameView()
             case .wordBuilder:
-                WordBuilderGameView()
+                BuildWordView()
             case .flagMatch:
-                FlagMatchGameView()
+                FlagMatchView()
         }
     }
 }
@@ -298,8 +298,9 @@ struct GameCard: View {
                     Text(description)
                         .font(.custom("Mexicana", size: 14))
                         .foregroundColor(.white.opacity(0.9))
-                        .lineLimit(2)
+                        .lineLimit(0)
                         .shadow(color: .black.opacity(0.3), radius: 1, x: 0, y: 1)
+                        .frame(maxWidth: .infinity)
                     
                     HStack(spacing: 12) {
                         Label(difficulty, systemImage: "chart.bar.fill")
@@ -759,85 +760,7 @@ struct QuizGameView: View {
     }
 }
 
-struct WordBuilderGameView: View {
-    @Environment(\.dismiss) var dismiss
-    
-    var body: some View {
-        ZStack {
-            LinearGradient(
-                colors: [
-                    Color(red: 0.1, green: 0.1, blue: 0.1),
-                    Color(red: 0.2, green: 0.2, blue: 0.2)
-                ],
-                startPoint: .topLeading,
-                endPoint: .bottomTrailing
-            )
-            .ignoresSafeArea()
-            
-            VStack {
-                Button {
-                    dismiss()
-                } label: {
-                    Image(systemName: "xmark.circle.fill")
-                        .font(.system(size: 32))
-                        .foregroundColor(Color(red: 1.0, green: 0.8, blue: 0.0))
-                        .shadow(color: .black.opacity(0.4), radius: 2, x: 0, y: 2)
-                }
-                .padding()
-                
-                Text("📝 Build Words")
-                    .font(.custom("Mexicana", size: 32))
-                    .foregroundColor(Color(red: 1.0, green: 0.8, blue: 0.0))
-                    .shadow(color: .black.opacity(0.5), radius: 3, x: 0, y: 2)
-                
-                Text("Developing")
-                    .font(.custom("Mexicana", size: 20))
-                    .foregroundColor(.white.opacity(0.9))
-                    .padding()
-            }
-        }
-    }
-}
 
-struct FlagMatchGameView: View {
-    @Environment(\.dismiss) var dismiss
-    
-    var body: some View {
-        ZStack {
-            LinearGradient(
-                colors: [
-                    Color(red: 0.1, green: 0.1, blue: 0.1),
-                    Color(red: 0.2, green: 0.2, blue: 0.2)
-                ],
-                startPoint: .topLeading,
-                endPoint: .bottomTrailing
-            )
-            .ignoresSafeArea()
-            
-            VStack {
-                Button {
-                    dismiss()
-                } label: {
-                    Image(systemName: "xmark.circle.fill")
-                        .font(.system(size: 32))
-                        .foregroundColor(Color(red: 1.0, green: 0.8, blue: 0.0))
-                        .shadow(color: .black.opacity(0.4), radius: 2, x: 0, y: 2)
-                }
-                .padding()
-                
-                Text("🏴 Flags of Mexico")
-                    .font(.custom("Mexicana", size: 32))
-                    .foregroundColor(Color(red: 1.0, green: 0.8, blue: 0.0))
-                    .shadow(color: .black.opacity(0.5), radius: 3, x: 0, y: 2)
-                
-                Text("Developing")
-                    .font(.custom("Mexicana", size: 20))
-                    .foregroundColor(.white.opacity(0.9))
-                    .padding()
-            }
-        }
-    }
-}
 
 // MARK: - Taco Trivia Game View
 struct TacoTriviaGameView: View {

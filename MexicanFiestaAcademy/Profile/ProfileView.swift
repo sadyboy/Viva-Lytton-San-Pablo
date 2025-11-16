@@ -180,16 +180,12 @@ struct ProfileView: View {
                         Button {
                             // Show all achievements
                         } label: {
-                            Text("All")
+                            Text("")
                                 .font(.custom("Mexicana", size: 16))
                                 .foregroundColor(.white)
                                 .padding(.horizontal, 16)
                                 .padding(.vertical, 8)
-                                .background(
-                                    Capsule()
-                                        .fill(Color(red: 1.0, green: 0.8, blue: 0.0).opacity(0.7))
-                                        .shadow(color: .black.opacity(0.3), radius: 3, x: 0, y: 2)
-                                )
+                          
                         }
                     }
                     .padding(.horizontal)

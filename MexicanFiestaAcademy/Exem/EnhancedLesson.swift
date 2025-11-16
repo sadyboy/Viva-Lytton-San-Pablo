@@ -430,8 +430,9 @@ struct LessonDetailView: View {
                 ScrollView {
                     VStack(spacing: 30) {
                         VStack(spacing: 20) {
-                            Text(lesson.emoji)
-                                .font(.system(size: 80))
+                            Image(lesson.emoji)
+                                .resizable()
+                                .frame(width: 80, height: 80)
                                 .shadow(color: .black.opacity(0.4), radius: 5, x: 0, y: 3)
                             
                             VStack(spacing: 12) {
