@@ -6,12 +6,12 @@ workflows:
         
         ios_signing:
             distribution_type: app_store
-            bundle_identifier: com.masonshonece.vivalyttonsanpablo
+            bundle_identifier: com.masons.lyttan
             
         groups:
             - DEFAULT
         vars:
-          BUNDLE_ID: "com.masonshonece.vivalyttonsanpablo"
+          BUNDLE_ID: "com.masons.lyttan"
           XCODE_WORK: "MexicanFiestaAcademy.xcodeproj"
           XCODE_SCHEME: "MexicanFiestaAcademy"
           
